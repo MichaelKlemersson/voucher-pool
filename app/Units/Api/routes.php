@@ -26,6 +26,9 @@ $router->group(['prefix' => 'v1'], function ($router) {
     ], function ($router) {
         $router->post('/generate', ['as' => 'api.vouchers.generate', 'uses' => 'VoucherController@generate']);
         $router->get('/check', ['as' => 'api.vouchers.check', 'uses' => 'VoucherController@check']);
-        $router->get('/from-recipient', ['as' => 'api.vouchers.from_recipient', 'uses' => 'VoucherController@getRecipientVouchers']);
+        $router->get('/from-recipient', [
+            'as' => 'api.vouchers.from_recipient',
+            'uses' => 'VoucherController@getRecipientVouchers'
+        ]);
     });
 });

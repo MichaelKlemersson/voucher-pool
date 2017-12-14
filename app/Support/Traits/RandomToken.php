@@ -9,8 +9,8 @@ trait RandomToken
         $wordBytes = 16;
         $token = '';
 
-        if(!isset($length) || intval($length) < 8 ) {
-          $length = 8;
+        if (!isset($length) || intval($length) < 8) {
+            $length = 8;
         }
         if (function_exists('random_bytes')) {
             $token = bin2hex(random_bytes($wordBytes));

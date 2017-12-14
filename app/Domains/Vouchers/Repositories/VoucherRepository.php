@@ -42,7 +42,7 @@ class VoucherRepository extends BaseRepository
 
     /**
      * Return an array of vouchers
-     * 
+     *
      * @param Offer $offer
      * @param array|Collection $recipents
      * @param string|DateTime $endDate
@@ -57,7 +57,7 @@ class VoucherRepository extends BaseRepository
 
         $vouchers = [];
         
-        foreach($recipients as $recipient) {
+        foreach ($recipients as $recipient) {
             $vouchers[] = new Voucher([
                 'offer_id' => $offer->id,
                 'recipient_id' => $recipient->id,
@@ -70,7 +70,7 @@ class VoucherRepository extends BaseRepository
 
     /**
      * Check if the date is greather then current date
-     * 
+     *
      * @param string $date
      * @return bool
      */
@@ -83,7 +83,7 @@ class VoucherRepository extends BaseRepository
 
     /**
      * Return all valid voucher from a recipient
-     * 
+     *
      * @param string $email
      */
     public function getValidVouchersFrom(string $email)
@@ -97,7 +97,7 @@ class VoucherRepository extends BaseRepository
 
     /**
      * Return the percentage of discount for the given voucher and set the voucher used date
-     * 
+     *
      * @param string $code
      * @return float
      */

@@ -10,7 +10,6 @@ use App\Domains\Recipients\Recipient;
 use App\Domains\Offers\Offer;
 use Carbon\Carbon;
 
-
 class Voucher extends Model implements Transformable
 {
     use RandomToken, SoftDeletes;
@@ -32,7 +31,7 @@ class Voucher extends Model implements Transformable
 
     /**
      * Voucher Constructor
-     * 
+     *
      * @param array $attributes
      */
     public function __construct(array $attributes = [])
