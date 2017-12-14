@@ -96,17 +96,20 @@ class VoucherRepository extends BaseRepository
     }
 
     /**
-     * Return the percentage of discount for the given voucher
+     * Return the percentage of discount for the given voucher and set the voucher used date
      * 
      * @param string $code
      * @return float
      */
-    public function getVoucherDiscount(string $code)
+    public function getDiscount(string $code)
     {
         $voucher = $this->skipPresenter()
             ->with('offer')
             ->findByField('code', $code)
             ->first();
+
+        $voucher->used_date = Carbon::now();
+        $voucher->save();
 
         return $voucher->offer->discount / 100.;
     }

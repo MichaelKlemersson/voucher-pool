@@ -18,6 +18,15 @@ class OfferController extends Controller
         $this->offerRepository = $offerRepository;
     }
 
+    /**
+     * @api {get} /offers
+     * @apiName GetOffers
+     * @apiGroup Offer
+     * @apiVersion 0.1.0
+     * 
+     * @apiExample {curl} Example usage:
+     *      curl -i http://localhost:8080/api/v1/offers
+     */
     public function index()
     {
         return response()->json(
@@ -25,6 +34,18 @@ class OfferController extends Controller
         );
     }
 
+    /**
+     * @api {post} /offers
+     * @apiName CreateOffer
+     * @apiGroup Offer
+     * @apiVersion 0.1.0
+     * 
+     * @apiParam {String} name offer name
+     * @apiParam {Number} discount offer discount
+     * 
+     * @apiExample {curl} Example usage:
+     *      curl -X POST -H 'Content-Type: application/json' -d '{"name":"first offer","discount":1.00}' http://localhost:8080/api/v1/offers
+     */
     public function store(OfferValidation $validator, Request $request)
     {
         if ($validator->authorize()) {

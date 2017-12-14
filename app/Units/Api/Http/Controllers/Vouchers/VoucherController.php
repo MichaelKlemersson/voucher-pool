@@ -30,6 +30,18 @@ class VoucherController extends Controller
         $this->recipientRepository = $recipientRepository;
     }
 
+    /**
+     * @api {post} /vouchers/generate
+     * @apiName CreateVouchers
+     * @apiGroup Voucher
+     * @apiVersion 0.1.0
+     * 
+     * @apiParam {Number} offer an offer id
+     * @apiParam {String} end_date a final date for all vouchers using the format YYYY-MM-DD HH:ii:ss
+     * 
+     * @apiExample {curl} Example usage:
+     *      curl -X POST -H 'Content-Type: application/json' -d '{"offer":"foo bar","end_date":"2018-01-01 23:59:59"}' http://localhost:8080/api/v1/vouchers/generate
+     */
     public function generate(VoucherValidation $validator, Request $request)
     {
         if ($validator->authorize()) {
@@ -55,19 +67,41 @@ class VoucherController extends Controller
         return response()->json('Unauthorized', Response::HTTP_UNAUTHORIZED);
     }
 
+    /**
+     * @api {get} /vouchers/check
+     * @apiName CheckVoucher
+     * @apiGroup Voucher
+     * @apiVersion 0.1.0
+     * 
+     * @apiParam {String} code the voucher code
+     * 
+     * @apiExample {curl} Example usage:
+     *      curl -i http://localhost:8080/api/v1/vouchers/check?code=somecode
+     */
     public function check(GetVoucherDiscountValidation $validator, Request $request)
     {
         if ($validator->authorize()) {
-            $this->validate($request, $validator->rules());
+            $this->validate($request, $validator->rules($request->all()));
 
             return response()->json([
-                'discount' => $this->voucherRepository->getVoucherDiscount($request->input('code'))
+                'discount' => $this->voucherRepository->getDiscount($request->input('code'))
             ]);
         }
 
         return response()->json('Unauthorized', Response::HTTP_UNAUTHORIZED);
     }
 
+    /**
+     * @api {get} /vouchers/from-recipient
+     * @apiName ListRecipientVouchers
+     * @apiGroup Voucher
+     * @apiVersion 0.1.0
+     * 
+     * @apiParam {String} email an existing recipient email
+     * 
+     * @apiExample {curl} Example usage:
+     *      curl -i http://localhost:8080/api/v1/vouchers/from-recipient?email=foo@bar.baz
+     */
     public function getRecipientVouchers(ListRecipientVoucherValidation $validator, Request $request)
     {
         if ($validator->authorize()) {

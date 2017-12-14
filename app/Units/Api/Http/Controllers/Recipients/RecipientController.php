@@ -17,6 +17,15 @@ class RecipientController extends Controller
         $this->recipientRepository = $recipientRepository;
     }
 
+    /**
+     * @api {get} /recipients
+     * @apiName GetRecipients
+     * @apiGroup Recipient
+     * @apiVersion 0.1.0
+     * 
+     * @apiExample {curl} Example usage:
+     *      curl -i http://localhost:8080/api/v1/recipients
+     */
     public function index()
     {
         return response()->json(
@@ -24,6 +33,18 @@ class RecipientController extends Controller
         );
     }
 
+    /**
+     * @api {post} /recipients
+     * @apiName CreateRecipient
+     * @apiGroup Recipient
+     * @apiVersion 0.1.0
+     * 
+     * @apiParam {String} name recipient name
+     * @apiParam {String} email recipient unique email
+     * 
+     * @apiExample {curl} Example usage:
+     *      curl -X POST -H 'Content-Type: application/json' -d '{"name":"foo bar","email":"foo@bar.baz"}' http://localhost:8080/api/v1/recipients
+     */
     public function store(RecipientValidation $validator, Request $request)
     {
         if ($validator->authorize()) {
