@@ -1,0 +1,178 @@
+{
+	"variables": [],
+	"info": {
+		"name": "voucher-pool-postman",
+		"_postman_id": "6553e917-f8e4-f331-6e54-745501154f39",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/api/v1/offers",
+			"request": {
+				"url": "localhost:8080/api/v1/offers",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "list all offers"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/v1/offers",
+			"request": {
+				"url": "localhost:8080/api/v1/offers",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "first offer",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "discount",
+							"value": "1.00",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "create an offer"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/v1/recipients",
+			"request": {
+				"url": "localhost:8080/api/v1/recipients",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "list all recipients"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/v1/recipients",
+			"request": {
+				"url": "localhost:8080/api/v1/recipients",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "first recipient",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "first@recipient.com",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "create a recipient"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/v1/vouchers/generate",
+			"request": {
+				"url": "localhost:8080/api/v1/vouchers/generate",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "offer",
+							"value": "6",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "end_date",
+							"value": "2018-01-01 00:00:00",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "generate vouchers for all recipients for a given offer"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/v1/vouchers/from-recipient?email=first@recipient.com",
+			"request": {
+				"url": {
+					"raw": "localhost:8080/api/v1/vouchers/from-recipient?email=first@recipient.com",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"vouchers",
+						"from-recipient"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "first@recipient.com",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "list all valid vouchers from a recipient"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/v1/vouchers/check?code=b08003ea",
+			"request": {
+				"url": {
+					"raw": "localhost:8080/api/v1/vouchers/check?code=b08003ea",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"vouchers",
+						"check"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "b08003ea",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "get the percentage of discount for a valid voucher"
+			},
+			"response": []
+		}
+	]
+}
