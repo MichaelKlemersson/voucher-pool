@@ -1,0 +1,16 @@
+language: php
+php:
+  - '7.0'
+  - '7.1'
+env:
+  - APP_ENV=testing
+  - APP_DEBUG=true
+  - APP_TIMEZONE=UTC
+  - APP_URL=http://localhost
+  - DB_CONNECTION=sqlite
+  - DB_DATABASE=database/voucherpool.sqlite
+  - DB_STRICT_MODE=false
+  - CACHE_DRIVER=file
+  - QUEUE_DRIVER=sync
+before_install:
+  - echo "extension=sqlite3.so" >>php --ini | grep "Loaded Configuration" | sed -e "s|.:\s||"
