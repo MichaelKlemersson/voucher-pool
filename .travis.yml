@@ -12,5 +12,11 @@ env:
   - DB_STRICT_MODE=false
   - CACHE_DRIVER=file
   - QUEUE_DRIVER=sync
+install:
+    - flags="--ansi --prefer-dist --no-interaction --optimize-autoloader --no-suggest --no-progress"
+    - composer install $flags
+    - bin/composer install $flags
 before_install:
   - echo "extension=sqlite3.so" >>php --ini | grep "Loaded Configuration" | sed -e "s|.:\s||"
+# script:
+#   - composer test:all
