@@ -1,3 +1,5 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/cbdc7c30b595d13da81a/maintainability)](https://codeclimate.com/github/MichaelKlemersson/voucher-pool/maintainability)
+
 # voucher pool
 this is the code used for a voucher pool challenge test
 
