@@ -2,6 +2,8 @@
 this is the code used for a voucher pool challenge test
 
 ## requirements
+**PHP** version >= 7.1
+
 this application is using **docker** to create containers and run the application,
 so if you haven't it's not a problem just create a database, run the migrations and update your settings on **.env** file
 
